@@ -1,4 +1,4 @@
-// Program to add two integers typed by user at keyboard
+// Find pi with montecarlo ./file 30 2112 (Run with N=30 and seed= 1112)
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
@@ -24,7 +24,19 @@ int main(int argc, char* argv[])
   // Write out a summary of parameters
 
   cout << "# " << argv[0] << " N=" << N << " seed=" << seed << endl;
-}
 
-  ////continue late 
+  ////init random number generator
+  srandom(seed);
+
+  //Perform N experiments
+  for(int n=1; n<=N; n++) {
+    double x=ranf();
+    double y = ranf();
+    outcome = (x*x + y*y < 1.0) ? 1 : 0;
+    count_in += outcome;
+
+    fraction_in = static_cast<double>(count_in)/n;
+    cout <<"location" << outcome << "\t" << x << "\t" << y << "\t" << count_in << "\t" << n << "\t" << 4.0 * fraction_in << endl;
+  }
+  return 0;
 }
